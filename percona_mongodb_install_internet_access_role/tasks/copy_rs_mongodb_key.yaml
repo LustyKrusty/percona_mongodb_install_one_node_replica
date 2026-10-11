@@ -1,0 +1,14 @@
+---
+- name: Check ReplicaSet key for MongoDB
+  stat:
+    path: "{{ mongodb_remote_path_key }}{{ mongodb_key_name | basename }}"
+  register: file_stat
+
+- name: Copy ReplicaSet key for MongoDB
+  copy:
+    src: "{{ mongodb_key_name }}"
+    dest: "{{ mongodb_remote_path_key }}"
+    owner: "{{ mongodb_user }}"
+    group: "{{ mongodb_group }}"
+    mode: '0400'
+  when: not file_stat.stat.exists

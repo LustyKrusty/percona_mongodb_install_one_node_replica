@@ -1,0 +1,6 @@
+- name: Disable percona-telemetry-agent
+  systemd:
+    name: "percona-telemetry-agent"
+    state: stopped
+    enabled: no
+    masked: yes

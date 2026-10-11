@@ -1,2 +1,46 @@
 ---
-# tasks file for percona_mongodb_install_internet_access_role
+# tasks file for aida_aihub_clean_install_role
+- import_tasks: add_percona_repo.yaml
+- import_tasks: apt_update.yaml
+- import_tasks: swapoff.yaml
+- import_tasks: install_pip3.yaml
+- import_tasks: install_pymongo.yaml
+- import_tasks: install_percona_mongodb.yaml
+- import_tasks: install_percona_pbm.yaml
+- import_tasks: install_percona_pmm.yaml
+- import_tasks: create_mongodb_dirs.yaml
+- import_tasks: generate_rs_mongodb_key.yaml
+  delegate_to: localhost
+- import_tasks: copy_rs_mongodb_key.yaml
+- import_tasks: generate_mongodb_logrotate.yaml
+- import_tasks: generate_mongodb_systemd_unit.yaml
+- import_tasks: generate_thp_systemd_unit.yaml
+- import_tasks: enable_thp.yaml
+- import_tasks: generate_mongodb_config.yaml
+- import_tasks: change_swappines.yaml
+- import_tasks: change_def_mongod.yaml
+- meta: flush_handlers
+- import_tasks: rs_init.yaml
+  when: rs_role == "primary"
+- import_tasks: create_admin_user_mongodb.yaml
+  when: rs_role == "primary"
+- import_tasks: create_pmm_role_mongodb.yaml
+  when: rs_role == "primary"
+- import_tasks: create_pbm_role_mongodb.yaml
+  when: rs_role == "primary"
+- import_tasks: create_backup_user_mongodb.yaml
+  when: rs_role == "primary"
+- import_tasks: create_pmm_user_in_mongodb.yaml
+  when: rs_role == "primary"
+- import_tasks: create_mongodb_tech_user_name.yaml
+  when: rs_role == "primary"
+- import_tasks: create_pbm_user_in_mongodb.yaml
+  when: rs_role == "primary"
+- import_tasks: register_node_in_pmm_server.yaml
+- import_tasks: register_service_mongodb_in_pmm_server.yaml
+- import_tasks: disable_telemetry_agent.yaml
+- import_tasks: disable_telemetry_mongodb_in_your_user_in_os.yaml
+- import_tasks: delete_localhost_files.yaml
+  delegate_to: localhost
+- import_tasks: connections_strings.yaml
+  delegate_to: localhost

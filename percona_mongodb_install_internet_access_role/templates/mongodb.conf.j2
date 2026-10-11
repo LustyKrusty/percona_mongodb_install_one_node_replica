@@ -1,0 +1,30 @@
+net:
+  bindIp: "0.0.0.0"
+  compression:
+    compressors: snappy
+  ipv6: false
+  maxIncomingConnections: {{ max_incomming_connections }}
+  port: {{ mongodb_port }}
+  unixDomainSocket:
+    enabled: false
+  wireObjectCheck: true
+processManagement:
+  fork: true
+  pidFilePath: /var/run/mongod.pid
+security:
+  authorization: enabled
+  javascriptEnabled: true
+  keyFile: {{ mongodb_remote_path_key }}{{ mongodb_key_name }}
+storage:
+  dbPath: {{ mongodb_path_data }}
+  engine: wiredTiger
+  wiredTiger:
+    engineConfig:
+      journalCompressor: snappy
+systemLog:
+  destination: file
+  logAppend: true
+  logRotate: reopen
+  path: {{ mongodb_path_log }}mongod.log
+replication:
+  replSetName: {{ mongodb_replica_set_name }}

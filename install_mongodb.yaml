@@ -1,0 +1,21 @@
+---
+- hosts: "prod_hetzner"
+  gather_facts: true
+  vars_files:
+    - ~/LustyKrusty_github/percona_mongodb_install_one_node_replica/secrets.yaml
+  vars:
+    mongodb_major_version: "7"
+    mongodb_replica_set_name: "HETZNER-RS1"
+    mongodb_key_name: "P-HETZNER.key"
+    mongodb_tech_user_name: "hetzner"
+    mongodb_admin_user_name: "dba"
+    mongodb_backup_user_name: "buckup_dba"
+    mongodb_pmm_user_in_mongodb_name: "pmm_connector"
+    mongodb_pmm_user_in_pmm_server_name: "pmm_agent"
+    mongodb_db_name: "hetzner_test"
+    mongodb_pmm_cluster_name: "hetzner_test"
+    mongodb_pbm_user_name: "pbm_backup"
+  roles:
+    - role: percona_mongodb_install_internet_access_role
+      when:
+        - ansible_facts['distribution'] == "Ubuntu"

@@ -1,0 +1,5 @@
+- name: Enable and start service -  enable-transparent-huge-pages.service
+  systemd:
+    name: enable-transparent-huge-pages
+    enabled: yes
+    state: started

@@ -1,0 +1,8 @@
+---
+- name: Generate mongod.conf
+  template:
+    src: mongodb.conf.j2
+    dest: "{{ mongodb_path_conf }}mongod.conf"
+    owner: "{{ mongodb_user }}"
+    group: "{{ mongodb_group }}"
+    mode: '0644'

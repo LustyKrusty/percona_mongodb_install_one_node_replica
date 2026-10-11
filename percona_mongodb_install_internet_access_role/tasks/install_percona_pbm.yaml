@@ -1,0 +1,6 @@
+---
+- name: Install latest pbm
+  become: true
+  apt:
+    name: percona-backup-mongodb
+    state: latest

@@ -1,0 +1,11 @@
+---
+- name: Registr node in PMM server
+  shell: >
+    sudo pmm-admin config --server-insecure-tls --region={{ region_map[data_center] }} --az={{ location }} --server-url=https://{{ mongodb_pmm_user_in_pmm_server_name }}:{{ mongodb_pmm_user_in_pmm_server_password }}@{{ pmm_server_url }}
+  vars:
+    region_map:
+      amazon: amazon
+#      for example many clouds      
+#      google: google
+#      hetzner: hetzner
+  register: pmm_config_result

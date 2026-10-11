@@ -1,0 +1,15 @@
+---
+- name: Your connections strings, enjoy and Have a lot of FUN )
+  vars:
+    servers_connect: >-
+      {{
+        ansible_play_hosts_all
+        | map('extract', hostvars, 'ansible_fqdn')
+        | map('regex_replace', '$', ':' ~ mongodb_port)
+        | join(',')
+      }}
+  debug:
+    msg:
+      - "Admin connection string: mongodb://{{ mongodb_admin_user_name }}:{{ mongodb_admin_password | urlencode }}@{{ servers_connect }}/{{ mongodb_db_name }}?replicaSet={{ mongodb_replica_set_name }}&maxIdleTimeMS=600000&readPreference=primary&authSource=admin"
+      - "Tech user connection string: mongodb://{{ mongodb_tech_user_name }}:{{ mongodb_tech_user_password }}@{{ servers_connect }}/{{ mongodb_db_name }}?replicaSet={{ mongodb_replica_set_name }}&maxIdleTimeMS=600000&readPreference=primary&authSource={{ mongodb_db_name }}"
+  run_once: true

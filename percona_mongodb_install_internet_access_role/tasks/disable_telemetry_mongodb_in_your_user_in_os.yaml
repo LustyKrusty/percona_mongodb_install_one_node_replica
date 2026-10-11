@@ -1,0 +1,5 @@
+---
+- name: Disable telemetry for you user in OS
+  shell: >
+    mongosh admin --username "{{ mongodb_admin_user_name }}" --password "{{ mongodb_admin_password }}" --eval '
+    disableTelemetry();'

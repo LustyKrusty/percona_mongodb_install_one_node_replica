@@ -1,0 +1,4 @@
+---
+- name: Registr service MongoDB in PMM server
+  shell: >
+    pmm-admin add mongodb --username={{ mongodb_pmm_user_in_mongodb_name }} --password={{ mongodb_pmm_user_in_mongodb_password }} --service-name=`hostname`-mongodb --host=`hostname -f` --port={{ mongodb_port }} --replication-set={{ mongodb_replica_set_name }} --cluster={{ mongodb_pmm_cluster_name }} --enable-all-collectors  --query-source=profiler --environment=PROD

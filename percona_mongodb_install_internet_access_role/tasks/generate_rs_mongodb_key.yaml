@@ -1,0 +1,6 @@
+---
+- name: Create ReplicaSet key for MongoDB
+  shell: openssl rand -base64 768 > {{ role_path }}/files/{{ mongodb_key_name }}
+  args:
+    creates: "{{ role_path }}/files/{{ mongodb_key_name }}"
+  become: no

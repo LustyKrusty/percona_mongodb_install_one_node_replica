@@ -1,0 +1,18 @@
+- name: Fine all files in /files/
+  ansible.builtin.find:
+    paths: "{{ role_path }}/files"
+    file_type: any
+    hidden: true
+  register: role_files
+  delegate_to: localhost
+  become: false
+  run_once: true
+
+- name: Delete all files in /files/
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ role_files.files }}"
+  delegate_to: localhost
+  become: false
+  run_once: true

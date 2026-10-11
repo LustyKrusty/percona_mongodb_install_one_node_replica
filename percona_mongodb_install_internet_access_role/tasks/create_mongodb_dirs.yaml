@@ -1,0 +1,32 @@
+---
+- name: Create /opt/mongodb 
+  file:
+    path: /opt/mongodb
+    state: directory
+    owner: "{{ mongodb_user }}"
+    group: "{{ mongodb_group}}"
+    mode: '0775'
+
+- name: Create /opt/mongodb/etc 
+  file:
+    path: /opt/mongodb/etc
+    state: directory
+    owner: "{{ mongodb_user }}"
+    group: "{{ mongodb_group}}"
+    mode: '0775'
+
+- name: Create /opt/mongodb/log 
+  file:
+    path: /opt/mongodb/log
+    state: directory
+    owner: "{{ mongodb_user }}"
+    group: "{{ mongodb_group}}"
+    mode: '0775'
+
+- name: Create /opt/mongodb/data 
+  file:
+    path: /opt/mongodb/data
+    state: directory
+    owner: "{{ mongodb_user }}"
+    group: "{{ mongodb_group}}"
+    mode: '0755'

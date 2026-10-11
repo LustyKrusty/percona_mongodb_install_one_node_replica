@@ -1,0 +1,8 @@
+---
+- name: Generate logrotate
+  template:
+    src: logrotate_mongodb.j2
+    dest: "/etc/logrotate.d/mongodb"
+    owner: "{{ sys_user }}"
+    group: "{{ sys_group }}"
+    mode: '0644'

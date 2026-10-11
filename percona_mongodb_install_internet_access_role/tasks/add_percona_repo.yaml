@@ -1,0 +1,37 @@
+
+- name: Create apt keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Download Percona signing keyring
+  get_url:
+    url: https://github.com/percona/percona-repositories/raw/main/deb/percona-keyring.gpg
+    dest: /etc/apt/keyrings/percona.gpg
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Add Percona MongoDB repo
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/percona.gpg] https://repo.percona.com/psmdb-{{ mongodb_major_version }}0/apt {{ ansible_facts.distribution_release }} main"
+    filename: percona-mongodb
+    state: present
+
+- name: Add Percona telemetry repo
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/percona.gpg] https://repo.percona.com/telemetry/apt {{ ansible_facts.distribution_release }} main"
+    state: present
+
+- name: Add Percona pbm repo
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/percona.gpg] https://repo.percona.com/pbm/apt {{ ansible_facts.distribution_release }} main"
+    state: present
+
+- name: Add Percona pmm 3 repo
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/percona.gpg] https://repo.percona.com/pmm3-client/apt {{ ansible_facts.distribution_release }} main"
+    state: present

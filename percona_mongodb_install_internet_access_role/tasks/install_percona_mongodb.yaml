@@ -1,0 +1,6 @@
+---
+- name: Install latest Percona MongoDB
+  become: true
+  apt:
+    name: percona-server-mongodb
+    state: latest

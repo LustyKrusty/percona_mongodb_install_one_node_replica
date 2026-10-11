@@ -1,0 +1,6 @@
+---
+- name: Install latest pmm 3
+  become: true
+  apt:
+    name: pmm-client
+    state: latest

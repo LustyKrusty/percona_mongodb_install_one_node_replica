@@ -1,0 +1,2 @@
+[prod_hetzner]
+hetzner_mongodb.local                                                rs_prio=10  rs_role=primary  env=prod  data_center=hetzner  location=frank

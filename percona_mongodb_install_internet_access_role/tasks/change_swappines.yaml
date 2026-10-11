@@ -1,0 +1,8 @@
+---
+- name: Set vm.swappiness=1 permanently
+  sysctl:
+    name: vm.swappiness
+    value: '1'
+    state: present
+    reload: yes
+    

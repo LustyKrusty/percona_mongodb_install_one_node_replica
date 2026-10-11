@@ -1,2 +1,10 @@
 ---
 # handlers file for percona_mongodb_install_internet_access_role
+- name: restart systemd
+  systemd:
+    daemon_reload: yes
+
+- name: restart mongodb
+  systemd:
+    name: mongod
+    state: restarted

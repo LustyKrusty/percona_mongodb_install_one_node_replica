@@ -1,0 +1,23 @@
+# #################################################################
+# MONGO STANDART VARS
+# ################################################################# 
+mongodb_user: "mongod"
+mongodb_group: "mongod"
+mongodb_path_conf: "/etc/"
+mongodb_path_data: "/opt/mongodb/data/"
+mongodb_path_log: "/opt/mongodb/log/"
+mongodb_path_dir: "/opt/mongodb/"
+mongodb_remote_path_key: "/opt/mongodb/etc/"
+mongodb_systemd_unit_path: "/lib/systemd/system/"
+
+# ################################################################# 
+# MONGOD.CONF VARS
+# ################################################################# 
+max_incomming_connections: "1500"
+mongodb_port: "27017"
+
+# ##################################################################
+# SYSTEM VARS
+# ##################################################################
+sys_user: "root"
+sys_group: "root"

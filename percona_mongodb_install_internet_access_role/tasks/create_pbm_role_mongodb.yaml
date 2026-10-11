@@ -1,0 +1,14 @@
+---
+- name: Create pbm role - pbmAnyAction for MongoDB
+  community.mongodb.mongodb_role:
+    login_user: "{{ mongodb_admin_user_name }}"
+    login_password: "{{ mongodb_admin_password }}"
+    name: pbmAnyAction
+    roles: []
+    database: admin
+    privileges:
+      - resource:
+          anyResource: true
+        actions:
+          - anyAction
+    state: present

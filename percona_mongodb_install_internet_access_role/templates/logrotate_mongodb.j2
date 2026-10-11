@@ -1,0 +1,15 @@
+/opt/mongodb/log/mongod.log
+{
+   su {{ mongodb_user }} {{ mongodb_user }}
+   rotate 1
+   size 1G
+   missingok
+   create 0640 {{ mongodb_user }} {{ mongodb_user }}
+   compress
+   dateext
+   dateformat -%Y-%m-%d_%s
+   sharedscripts
+   postrotate
+     /usr/bin/pgrep -x mongod | /usr/bin/xargs -r /bin/kill -SIGUSR1 >/dev/null 2>&1 || true
+   endscript
+}

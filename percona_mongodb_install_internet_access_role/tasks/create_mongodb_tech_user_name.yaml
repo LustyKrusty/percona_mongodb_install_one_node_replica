@@ -1,0 +1,9 @@
+- name: Create tech(app) user for MongoDB
+  mongodb_user:
+    login_user: "{{ mongodb_admin_user_name }}"
+    login_password: "{{ mongodb_admin_password }}"
+    name: "{{ mongodb_tech_user_name }}"
+    password: "{{ mongodb_tech_user_password }}"
+    roles: readWrite
+    database: "{{ mongodb_db_name }}"
+    state: present

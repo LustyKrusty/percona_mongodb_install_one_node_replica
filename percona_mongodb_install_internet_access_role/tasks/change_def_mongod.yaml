@@ -1,0 +1,14 @@
+---
+- name: Change std out /etc/default/mongod
+  lineinfile:
+    path: /etc/default/mongod
+    regexp: '^STDOUT='
+    line: 'STDOUT="{{ mongodb_path_log }}mongod.stdout"'
+    backup: yes
+
+- name: Change stderr /etc/default/mongod
+  lineinfile:
+    path: /etc/default/mongod
+    regexp: '^STDERR='
+    line: 'STDERR="{{ mongodb_path_log }}mongod.stderr"'
+
