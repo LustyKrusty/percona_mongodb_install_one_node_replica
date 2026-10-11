@@ -4,7 +4,7 @@
 
 ## Requirements
 
-- **Ansible Core 2.15 or later** — installed on your local machine.
+- **Ansible Core 2.15** — installed on your local machine.
 - **The Ansible `community.mongodb` collection** — installed on your local machine.
 - **PyMongo 4.8.0** — installed on the remote servers automatically during playbook execution.
 
