@@ -1,5 +1,4 @@
 ---
-# tasks file for aida_aihub_clean_install_role
 - import_tasks: add_percona_repo.yaml
 - import_tasks: apt_update.yaml
 - import_tasks: swapoff.yaml
